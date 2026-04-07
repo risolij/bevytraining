@@ -74,29 +74,30 @@ pub fn load_assets(
         .into_iter()
         .enumerate()
         .for_each(|(i, assets)| {
-            assets.into_iter().for_each(|def| {
-                let SpawnableAsset {
-                    sprite_name,
-                    grid_offset,
-                    offset,
-                    components_spawner
-                } = def;
-
-                let Some(atlas_index) = TILEMAP.sprite_index(sprite_name) else {
-                    panic!("Unknown atlas sprite '{}'", sprite_name);
-
-                };
-
-                models_assets.add(
-                    i,
-                    ModelAsset {
-                        assets_bundle: tilemap_handles.sprite(atlas_index),
+            assets
+                .into_iter()
+                .for_each(|def| {
+                    let SpawnableAsset {
+                        sprite_name,
                         grid_offset,
-                        world_offset: offset,
-                        spawn_commands: components_spawner
-                    }
-                )
-            });
+                        offset,
+                        components_spawner
+                    } = def;
+
+                    let Some(atlas_index) = TILEMAP.sprite_index(sprite_name) else {
+                        panic!("Unknown atlas sprite '{}'", sprite_name);
+                    };
+
+                    models_assets.add(
+                        i,
+                        ModelAsset {
+                            assets_bundle: tilemap_handles.sprite(atlas_index),
+                            grid_offset,
+                            world_offset: offset,
+                            spawn_commands: components_spawner
+                        }
+                    )
+                });
         });
 
     models_assets

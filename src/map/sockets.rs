@@ -1,7 +1,9 @@
 use bevy_procedural_tilemaps::prelude::*;
 
 pub struct TerrainSockets {
-    pub dirt: DirtLayerSockets
+    pub dirt: DirtLayerSockets,
+    pub void: Socket,
+    pub grass: GrassLayerSockets
 }
 
 pub struct DirtLayerSockets {
@@ -10,14 +12,33 @@ pub struct DirtLayerSockets {
     pub material: Socket
 }
 
+pub struct GrassLayerSockets {
+    pub layer_up: Socket,
+    pub layer_down: Socket,
+    pub material: Socket,
+    pub void_and_grass: Socket,
+    pub grass_and_void: Socket,
+    pub grass_fill_up: Socket
+}
+
 pub fn create_sockets(socket_collection: &mut SocketCollection) -> TerrainSockets {
     let mut new_socket = || -> Socket { socket_collection.create() };
+
 
     TerrainSockets {
         dirt: DirtLayerSockets {
             layer_up: new_socket(),
             material: new_socket(),
             layer_down: new_socket(),
+        },
+        void: new_socket(),
+        grass: GrassLayerSockets {
+            layer_up: new_socket(),
+            material: new_socket(),
+            layer_down: new_socket(),
+            void_and_grass: new_socket(),
+            grass_and_void: new_socket(),
+            grass_fill_up: new_socket()
         }
     }
 }
