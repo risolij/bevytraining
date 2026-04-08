@@ -322,7 +322,7 @@ fn build_water_layer(
         Vec::new()
     );
 
-    const WATER_WEIGHT: f32 = 0.07;
+    const WATER_WEIGHT: f32 = 0.02;
     terrain_model_builder.create_model(
         SocketsCartesian3D::Simple {
             x_pos: terrain_sockets.water.material,
@@ -471,7 +471,7 @@ fn build_props_layer(
             x_pos: terrain_sockets.void,
             x_neg: terrain_sockets.void,
             z_pos: terrain_sockets.props.layer_up,
-            z_neg: terrain_sockets.props.layer_down,
+            z_neg: terrain_sockets.props.props_down,
             y_pos: terrain_sockets.void,
             y_neg: terrain_sockets.void,
     }
@@ -496,7 +496,7 @@ fn build_props_layer(
                 x_pos: terrain_sockets.props.big_tree_1_base,
                 x_neg: terrain_sockets.void,
                 z_pos: terrain_sockets.props.layer_up,
-                z_neg: terrain_sockets.props.layer_down,
+                z_neg: terrain_sockets.props.props_down,
                 y_pos: terrain_sockets.void,
                 y_neg: terrain_sockets.void,
             },
@@ -514,7 +514,7 @@ fn build_props_layer(
                 x_pos: terrain_sockets.void,
                 x_neg: terrain_sockets.props.big_tree_1_base,
                 z_pos: terrain_sockets.props.layer_up,
-                z_neg: terrain_sockets.props.layer_down,
+                z_neg: terrain_sockets.props.props_down,
                 y_pos: terrain_sockets.void,
                 y_neg: terrain_sockets.void,
             },
@@ -532,7 +532,7 @@ fn build_props_layer(
                 x_pos: terrain_sockets.props.big_tree_2_base,
                 x_neg: terrain_sockets.void,
                 z_pos: terrain_sockets.props.layer_up,
-                z_neg: terrain_sockets.props.layer_down,
+                z_neg: terrain_sockets.props.props_down,
                 y_pos: terrain_sockets.void,
                 y_neg: terrain_sockets.void,
             },
@@ -550,7 +550,7 @@ fn build_props_layer(
                 x_pos: terrain_sockets.void,
                 x_neg: terrain_sockets.props.big_tree_2_base,
                 z_pos: terrain_sockets.props.layer_up,
-                z_neg: terrain_sockets.props.layer_down,
+                z_neg: terrain_sockets.props.props_down,
                 y_pos: terrain_sockets.void,
                 y_neg: terrain_sockets.void,
             },
@@ -604,7 +604,7 @@ fn build_props_layer(
             vec![terrain_sockets.props.layer_down]
         )
         .add_rotated_connection(
-            terrain_sockets.props.layer_down,
+            terrain_sockets.props.props_down,
             vec![terrain_sockets.water.ground_up]
         );
      

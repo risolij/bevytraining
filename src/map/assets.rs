@@ -28,6 +28,7 @@ impl SpawnableAsset {
     }
 }
 
+
 #[derive(Clone)]
 pub struct TilemapHandles {
     pub image: Handle<Image>,
@@ -55,9 +56,12 @@ pub fn prepare_tilemap_handles(
 
     let mut layout = TextureAtlasLayout::new_empty(TILEMAP.atlas_size());
 
-    for index in 0..TILEMAP.sprites.len() {
-        layout.add_texture(TILEMAP.sprite_rect(index));
-    }
+    TILEMAP.sprites
+        .into_iter()
+        .enumerate()
+        .for_each(|(index, _)| {
+            layout.add_texture(TILEMAP.sprite_rect(index));
+        });
 
     let layout = atlas_layouts.add(layout);
 
@@ -73,23 +77,23 @@ pub fn load_assets(
     assets_definitions
         .into_iter()
         .enumerate()
-        .for_each(|(i, assets)| {
+        .for_each(|(index, assets)| {
             assets
                 .into_iter()
-                .for_each(|def| {
+                .for_each(|asset| {
                     let SpawnableAsset {
                         sprite_name,
                         grid_offset,
                         offset,
                         components_spawner
-                    } = def;
+                    } = asset;
 
                     let Some(atlas_index) = TILEMAP.sprite_index(sprite_name) else {
                         panic!("Unknown atlas sprite '{}'", sprite_name);
                     };
 
                     models_assets.add(
-                        i,
+                        index,
                         ModelAsset {
                             assets_bundle: tilemap_handles.sprite(atlas_index),
                             grid_offset,
