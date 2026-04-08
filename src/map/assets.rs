@@ -2,18 +2,19 @@ use bevy::{
     prelude::*
 };
 use bevy_procedural_tilemaps::prelude::*;
-use crate::map::tilemap::TILEMAP;
+use crate::map::tilemap::{ SpriteType, TILEMAP };
+
 
 #[derive(Clone)]
 pub struct SpawnableAsset {
-    sprite_name: &'static str,
+    sprite_name: SpriteType,
     grid_offset: GridDelta,
     offset: Vec3,
     components_spawner: fn(&mut EntityCommands),
 }
 
 impl SpawnableAsset {
-    pub fn new(sprite_name: &'static str) -> Self {
+    pub fn new(sprite_name: SpriteType) -> Self {
         Self {
             sprite_name,
             grid_offset: GridDelta::new(0,0,0),
@@ -74,35 +75,30 @@ pub fn load_assets(
 ) -> ModelsAssets<Sprite> {
     let mut models_assets = ModelsAssets::<Sprite>::new();
 
-    assets_definitions
-        .into_iter()
-        .enumerate()
-        .for_each(|(index, assets)| {
-            assets
-                .into_iter()
-                .for_each(|asset| {
-                    let SpawnableAsset {
-                        sprite_name,
-                        grid_offset,
-                        offset,
-                        components_spawner
-                    } = asset;
+    assets_definitions.into_iter().enumerate().for_each(|(index, assets)| {
+        assets.into_iter().for_each(|asset| {
+            let SpawnableAsset {
+                sprite_name,
+                grid_offset,
+                offset,
+                components_spawner
+            } = asset;
 
-                    let Some(atlas_index) = TILEMAP.sprite_index(sprite_name) else {
-                        panic!("Unknown atlas sprite '{}'", sprite_name);
-                    };
+            let Some(atlas_index) = TILEMAP.sprite_index(sprite_name) else {
+                panic!("Unknown atlas sprite '{:?}'", sprite_name);
+            };
 
-                    models_assets.add(
-                        index,
-                        ModelAsset {
-                            assets_bundle: tilemap_handles.sprite(atlas_index),
-                            grid_offset,
-                            world_offset: offset,
-                            spawn_commands: components_spawner
-                        }
-                    )
-                });
+            models_assets.add(
+                index,
+                ModelAsset {
+                    assets_bundle: tilemap_handles.sprite(atlas_index),
+                    grid_offset,
+                    world_offset: offset,
+                    spawn_commands: components_spawner
+                }
+            )
         });
+    });
 
     models_assets
 }
