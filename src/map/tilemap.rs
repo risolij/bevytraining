@@ -37,69 +37,123 @@ impl TilemapDefinition {
     }
 }
 
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum GreenGrass {
+    GreenGrass,
+    CornerInTopLeft,
+    CornerInTopRight,
+    CornerInBottomLeft,
+    CornerInBottomRight,
+    CornerOutTopLeft,
+    CornerOutTopRight,
+    CornerOutBottomLeft,
+    CornerOutBottomRight,
+    SideTop,
+    SideRight,
+    SideLeft,
+    SideBottom
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum YellowGrass {
+    YellowGrass,
+    CornerInTopLeft,
+    CornerInTopRight,
+    CornerInBottomLeft,
+    CornerInBottomRight,
+    CornerOutTopLeft,
+    CornerOutTopRight,
+    CornerOutBottomLeft,
+    CornerOutBottomRight,
+    SideTop,
+    SideRight,
+    SideLeft,
+    SideBottom
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum Water {
+    Water,
+    CornerInTopLeft,
+    CornerInTopRight,
+    CornerInBottomLeft,
+    CornerInBottomRight,
+    CornerOutTopLeft,
+    CornerOutTopRight,
+    CornerOutBottomLeft,
+    CornerOutBottomRight,
+    SideTop,
+    SideRight,
+    SideLeft,
+    SideBottom
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum BigTreeOne {
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum BigTreeTwo {
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum Plant {
+    One,
+    Two,
+    Three,
+    Four
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum Rock {
+    One,
+    Two,
+    Three,
+    Four
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum SmallTree {
+    Top,
+    Bottom,
+}
+
+
+#[derive(Eq, PartialEq, Clone, Copy, Debug)]
+pub enum TreeStump {
+    One,
+    Two,
+    Three
+}
+
 #[derive(Eq, PartialEq, Clone, Copy, Debug)]
 pub enum SpriteType {
     Dirt,
-    GreenGrass,
-    GreenGrassCornerInTopLeft,
-    GreenGrassCornerInTopRight,
-    GreenGrassCornerInBottomLeft,
-    GreenGrassCornerInBottomRight,
-    GreenGrassCornerOutTopLeft,
-    GreenGrassCornerOutTopRight,
-    GreenGrassCornerOutBottomLeft,
-    GreenGrassCornerOutBottomRight,
-    GreenGrassSideTop,
-    GreenGrassSideRight,
-    GreenGrassSideLeft,
-    GreenGrassSideBottom,
-    YellowGrass,
-    YellowGrassCornerInTopLeft,
-    YellowGrassCornerInTopRight,
-    YellowGrassCornerInBottomLeft,
-    YellowGrassCornerInBottomRight,
-    YellowGrassCornerOutTopLeft,
-    YellowGrassCornerOutTopRight,
-    YellowGrassCornerOutBottomLeft,
-    YellowGrassCornerOutBottomRight,
-    YellowGrassSideTop,
-    YellowGrassSideRight,
-    YellowGrassSideLeft,
-    YellowGrassSideBottom,
-    Water,
-    WaterCornerInTopLeft,
-    WaterCornerInTopRight,
-    WaterCornerInBottomLeft,
-    WaterCornerInBottomRight,
-    WaterCornerOutTopLeft,
-    WaterCornerOutTopRight,
-    WaterCornerOutBottomLeft,
-    WaterCornerOutBottomRight,
-    WaterSideTop,
-    WaterSideRight,
-    WaterSideLeft,
-    WaterSideBottom,
-    BigTree1TopLeft,
-    BigTree1TopRight,
-    BigTree1BottomLeft,
-    BigTree1BottomRight,
-    BigTree2TopLeft,
-    BigTree2TopRight,
-    BigTree2BottomLeft,
-    BigTree2BottomRight,
-    Plant1,
-    Plant2,
-    Plant3,
-    Plant4,
-    Rock1,
-    Rock2,
-    Rock3,
-    Rock4,
-    SmallTreeTop,
-    SmallTreeBottom,
-    TreeStump1,
-    TreeStump2,
-    TreeStump3
+    GreenGrass(GreenGrass),
+    YellowGrass(YellowGrass),
+    Water(Water),
+    BigTreeOne(BigTreeOne),
+    BigTreeTwo(BigTreeTwo),
+    Plant(Plant),
+    Rock(Rock),
+    SmallTree(SmallTree),
+    TreeStump(TreeStump)
 }
 
 pub const TILEMAP: TilemapDefinition = TilemapDefinition {
@@ -114,302 +168,302 @@ pub const TILEMAP: TilemapDefinition = TilemapDefinition {
             pixel_y: 0
         },
         TilemapSprite {
-            name: SpriteType::GreenGrass,
+            name: SpriteType::GreenGrass(GreenGrass::GreenGrass),
             pixel_x: 160,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerInTopLeft,
+            name: SpriteType::GreenGrass(GreenGrass::CornerInTopLeft),
             pixel_x: 192,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerInTopRight,
+            name: SpriteType::GreenGrass(GreenGrass::CornerInTopRight),
             pixel_x: 224,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerInBottomLeft,
+            name: SpriteType::GreenGrass(GreenGrass::CornerInBottomLeft),
             pixel_x: 192,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerInBottomRight,
+            name: SpriteType::GreenGrass(GreenGrass::CornerInBottomRight),
             pixel_x: 224,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerOutTopLeft,
+            name: SpriteType::GreenGrass(GreenGrass::CornerOutTopLeft),
             pixel_x: 0,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerOutTopRight,
+            name: SpriteType::GreenGrass(GreenGrass::CornerOutTopRight),
             pixel_x: 32,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerOutBottomLeft,
+            name: SpriteType::GreenGrass(GreenGrass::CornerOutBottomLeft),
             pixel_x: 0,
             pixel_y: 96,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassCornerOutBottomRight,
+            name: SpriteType::GreenGrass(GreenGrass::CornerOutBottomRight),
             pixel_x: 32,
             pixel_y: 96,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassSideTop,
+            name: SpriteType::GreenGrass(GreenGrass::SideTop),
             pixel_x: 64,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassSideRight,
+            name: SpriteType::GreenGrass(GreenGrass::SideRight),
             pixel_x: 96,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassSideLeft,
+            name: SpriteType::GreenGrass(GreenGrass::SideLeft),
             pixel_x: 64,
             pixel_y: 96,
         },
         TilemapSprite {
-            name: SpriteType::GreenGrassSideBottom,
+            name: SpriteType::GreenGrass(GreenGrass::SideBottom),
             pixel_x: 96,
             pixel_y: 96,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrass,
+            name: SpriteType::YellowGrass(YellowGrass::YellowGrass),
             pixel_x: 0,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerInTopLeft,
+            name: SpriteType::YellowGrass(YellowGrass::CornerInTopLeft),
             pixel_x: 32,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerInTopRight,
+            name: SpriteType::YellowGrass(YellowGrass::CornerInTopRight),
             pixel_x: 64,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerInBottomLeft,
+            name: SpriteType::YellowGrass(YellowGrass::CornerInBottomLeft),
             pixel_x: 32,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerInBottomRight,
+            name: SpriteType::YellowGrass(YellowGrass::CornerInBottomRight),
             pixel_x: 64,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerOutTopLeft,
+            name: SpriteType::YellowGrass(YellowGrass::CornerOutTopLeft),
             pixel_x: 96,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerOutTopRight,
+            name: SpriteType::YellowGrass(YellowGrass::CornerOutTopRight),
             pixel_x: 128,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerOutBottomLeft,
+            name: SpriteType::YellowGrass(YellowGrass::CornerOutBottomLeft),
             pixel_x: 96,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassCornerOutBottomRight,
+            name: SpriteType::YellowGrass(YellowGrass::CornerOutBottomRight),
             pixel_x: 128,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassSideTop,
+            name: SpriteType::YellowGrass(YellowGrass::SideTop),
             pixel_x: 160,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassSideRight,
+            name: SpriteType::YellowGrass(YellowGrass::SideRight),
             pixel_x: 192,
             pixel_y: 256,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassSideLeft,
+            name: SpriteType::YellowGrass(YellowGrass::SideLeft),
             pixel_x: 160,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::YellowGrassSideBottom,
+            name: SpriteType::YellowGrass(YellowGrass::SideBottom),
             pixel_x: 192,
             pixel_y: 288,
         },
         TilemapSprite {
-            name: SpriteType::Water,
+            name: SpriteType::Water(Water::Water),
             pixel_x: 32,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerInTopLeft,
+            name: SpriteType::Water(Water::CornerInTopLeft),
             pixel_x: 64,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerInTopRight,
+            name: SpriteType::Water(Water::CornerInTopRight),
             pixel_x: 96,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerInBottomLeft,
+            name: SpriteType::Water(Water::CornerInBottomLeft),
             pixel_x: 64,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerInBottomRight,
+            name: SpriteType::Water(Water::CornerInBottomRight),
             pixel_x: 96,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerOutTopLeft,
+            name: SpriteType::Water(Water::CornerOutTopLeft),
             pixel_x: 128,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerOutTopRight,
+            name: SpriteType::Water(Water::CornerOutTopRight),
             pixel_x: 160,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerOutBottomLeft,
+            name: SpriteType::Water(Water::CornerOutBottomLeft),
             pixel_x: 128,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::WaterCornerOutBottomRight,
+            name: SpriteType::Water(Water::CornerOutBottomRight),
             pixel_x: 160,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::WaterSideTop,
+            name: SpriteType::Water(Water::SideTop),
             pixel_x: 192,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterSideRight,
+            name: SpriteType::Water(Water::SideRight),
             pixel_x: 224,
             pixel_y: 192,
         },
         TilemapSprite {
-            name: SpriteType::WaterSideLeft,
+            name: SpriteType::Water(Water::SideLeft),
             pixel_x: 192,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::WaterSideBottom,
+            name: SpriteType::Water(Water::SideBottom),
             pixel_x: 224,
             pixel_y: 224,
         },
         TilemapSprite {
-            name: SpriteType::BigTree1TopLeft,
+            name: SpriteType::BigTreeOne(BigTreeOne::TopLeft),
             pixel_x: 0,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::BigTree1TopRight,
+            name: SpriteType::BigTreeOne(BigTreeOne::TopRight),
             pixel_x: 32,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::BigTree1BottomLeft,
+            name: SpriteType::BigTreeOne(BigTreeOne::BottomLeft),
             pixel_x: 0,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::BigTree1BottomRight,
+            name: SpriteType::BigTreeOne(BigTreeOne::BottomRight),
             pixel_x: 32,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::BigTree2TopLeft,
+            name: SpriteType::BigTreeTwo(BigTreeTwo::TopLeft),
             pixel_x: 64,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::BigTree2TopRight,
+            name: SpriteType::BigTreeTwo(BigTreeTwo::TopRight),
             pixel_x: 96,
             pixel_y: 0,
         },
         TilemapSprite {
-            name: SpriteType::BigTree2BottomLeft,
+            name: SpriteType::BigTreeTwo(BigTreeTwo::BottomLeft),
             pixel_x: 64,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::BigTree2BottomRight,
+            name: SpriteType::BigTreeTwo(BigTreeTwo::BottomRight),
             pixel_x: 96,
             pixel_y: 32,
         },
         TilemapSprite {
-            name: SpriteType::Plant1,
+            name: SpriteType::Plant(Plant::One),
             pixel_x: 128,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::Plant2,
+            name: SpriteType::Plant(Plant::Two),
             pixel_x: 160,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::Plant3,
+            name: SpriteType::Plant(Plant::Three),
             pixel_x: 192,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::Plant4,
+            name: SpriteType::Plant(Plant::Four),
             pixel_x: 224,
             pixel_y: 64,
         },
         TilemapSprite {
-            name: SpriteType::Rock1,
+            name: SpriteType::Rock(Rock::One),
             pixel_x: 0,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::Rock2,
+            name: SpriteType::Rock(Rock::Two),
             pixel_x: 32,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::Rock3,
+            name: SpriteType::Rock(Rock::Three),
             pixel_x: 64,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::Rock4,
+            name: SpriteType::Rock(Rock::Four),
             pixel_x: 96,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::SmallTreeTop,
+            name: SpriteType::SmallTree(SmallTree::Top),
             pixel_x: 128,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::SmallTreeBottom,
+            name: SpriteType::SmallTree(SmallTree::Bottom),
             pixel_x: 128,
             pixel_y: 160,
         },
         TilemapSprite {
-            name: SpriteType::TreeStump1,
+            name: SpriteType::TreeStump(TreeStump::One),
             pixel_x: 192,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::TreeStump2,
+            name: SpriteType::TreeStump(TreeStump::Two),
             pixel_x: 224,
             pixel_y: 128,
         },
         TilemapSprite {
-            name: SpriteType::TreeStump3,
+            name: SpriteType::TreeStump(TreeStump::Three),
             pixel_x: 0,
             pixel_y: 192,
         },

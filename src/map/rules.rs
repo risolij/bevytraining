@@ -2,7 +2,18 @@ use crate::map::assets::SpawnableAsset;
 use crate::map::models::TerrainModelBuilder;
 use crate::map::sockets::*;
 use bevy_procedural_tilemaps::prelude::*;
-use crate::map::tilemap::SpriteType;
+use crate::map::tilemap::{
+    SpriteType,
+    Plant,
+    Water,
+    Rock,
+    BigTreeOne,
+    BigTreeTwo,
+    TreeStump,
+    SmallTree,
+    GreenGrass,
+    YellowGrass
+};
 
 fn build_dirt_layer(
     terrain_model_builder: &mut TerrainModelBuilder,
@@ -58,7 +69,7 @@ fn build_grass_layer(
             y_pos: vec![terrain_sockets.grass.material],
             y_neg: vec![terrain_sockets.grass.material]
         },
-        vec![SpawnableAsset::new(SpriteType::GreenGrass)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::GreenGrass))]
     )
     .with_weight(5.);
 
@@ -95,62 +106,62 @@ fn build_grass_layer(
 
     terrain_model_builder.create_model(
         green_grass_corner_out.clone(),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerOutTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerOutTopLeft))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_out.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerOutBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerOutBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_out.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerOutBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerOutBottomRight))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_out.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerOutTopRight)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerOutTopRight))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_in.clone(),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerInTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerInTopLeft))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_in.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerInBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerInBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_in.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerInBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerInBottomRight))]
     );
 
     terrain_model_builder.create_model(
         green_grass_corner_in.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassCornerInTopRight)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::CornerInTopRight))]
     );
 
     terrain_model_builder.create_model(
         green_grass_side.clone(),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassSideTop)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::SideTop))]
     );
 
     terrain_model_builder.create_model(
         green_grass_side.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassSideLeft)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::SideLeft))]
     );
 
     terrain_model_builder.create_model(
         green_grass_side.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassSideBottom)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::SideBottom))]
     );
 
     terrain_model_builder.create_model(
         green_grass_side.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::GreenGrassSideRight)]
+        vec![SpawnableAsset::new(SpriteType::GreenGrass(GreenGrass::SideRight))]
     );
 
     socket_collection.add_rotated_connection(
@@ -197,7 +208,7 @@ fn build_yellow_grass_layer(
             y_pos: terrain_sockets.grass.material,
             y_neg: terrain_sockets.grass.material,
         },
-        vec![SpawnableAsset::new(SpriteType::YellowGrass)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::YellowGrass))]
     )
     .with_weight(5.);
 
@@ -234,62 +245,62 @@ fn build_yellow_grass_layer(
 
     terrain_model_builder.create_model(
         yellow_grass_corner_out.clone(),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerOutTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerOutTopLeft))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_out.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerOutBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerOutBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_out.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerOutBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerOutBottomRight))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_out.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerOutTopRight)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerOutTopRight))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_in.clone(),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerInTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerInTopLeft))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_in.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerInBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerInBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_in.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerInBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerInBottomRight))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_corner_in.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassCornerInTopRight)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::CornerInTopRight))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_side.clone(),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassSideTop)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::SideTop))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_side.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassSideLeft)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::SideLeft))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_side.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassSideBottom)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::SideBottom))]
     );
 
     terrain_model_builder.create_model(
         yellow_grass_side.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::YellowGrassSideRight)]
+        vec![SpawnableAsset::new(SpriteType::YellowGrass(YellowGrass::SideRight))]
     );
 
     socket_collection
@@ -333,7 +344,7 @@ fn build_water_layer(
             y_pos: terrain_sockets.water.material,
             y_neg: terrain_sockets.water.material,
         },
-        vec![SpawnableAsset::new(SpriteType::Water)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::Water))]
     )
     .with_weight(10. * WATER_WEIGHT);
 
@@ -372,62 +383,62 @@ fn build_water_layer(
 
     terrain_model_builder.create_model(
         water_corner_out.clone(),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerOutTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerOutTopLeft))]
     );
 
     terrain_model_builder.create_model(
         water_corner_out.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerOutBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerOutBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         water_corner_out.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerOutBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerOutBottomRight))]
     );
 
     terrain_model_builder.create_model(
         water_corner_out.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerOutTopRight)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerOutTopRight))]
     );
 
     terrain_model_builder.create_model(
         water_corner_in.clone(),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerInTopLeft)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerInTopLeft))]
     );
 
     terrain_model_builder.create_model(
         water_corner_in.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerInBottomLeft)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerInBottomLeft))]
     );
 
     terrain_model_builder.create_model(
         water_corner_in.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerInBottomRight)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerInBottomRight))]
     );
 
     terrain_model_builder.create_model(
         water_corner_in.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterCornerInTopRight)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::CornerInTopRight))]
     );
 
     terrain_model_builder.create_model(
         water_side.clone(),
-        vec![SpawnableAsset::new(SpriteType::WaterSideTop)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::SideTop))]
     );
 
     terrain_model_builder.create_model(
         water_side.rotated(ModelRotation::Rot90, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterSideLeft)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::SideLeft))]
     );
 
     terrain_model_builder.create_model(
         water_side.rotated(ModelRotation::Rot180, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterSideBottom)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::SideBottom))]
     );
 
     terrain_model_builder.create_model(
         water_side.rotated(ModelRotation::Rot270, Direction::ZForward),
-        vec![SpawnableAsset::new(SpriteType::WaterSideRight)]
+        vec![SpawnableAsset::new(SpriteType::Water(Water::SideRight))]
     );
 
     socket_collection.add_connections(vec![
@@ -486,8 +497,8 @@ fn build_props_layer(
     terrain_model_builder.create_model(
         plant_prop.clone(),
         vec![
-            SpawnableAsset::new(SpriteType::SmallTreeBottom),
-            SpawnableAsset::new(SpriteType::SmallTreeTop).with_grid_offset(GridDelta::new(0, 1, 0))
+            SpawnableAsset::new(SpriteType::SmallTree(SmallTree::Bottom)),
+            SpawnableAsset::new(SpriteType::SmallTree(SmallTree::Top)).with_grid_offset(GridDelta::new(0, 1, 0))
         ]
     );
 
@@ -502,8 +513,8 @@ fn build_props_layer(
                 y_neg: terrain_sockets.void,
             },
             vec![
-                SpawnableAsset::new(SpriteType::BigTree1BottomLeft),
-                SpawnableAsset::new(SpriteType::BigTree1TopLeft).with_grid_offset(GridDelta::new(0, 1, 0))
+                SpawnableAsset::new(SpriteType::BigTreeOne(BigTreeOne::BottomLeft)),
+                SpawnableAsset::new(SpriteType::BigTreeOne(BigTreeOne::TopLeft)).with_grid_offset(GridDelta::new(0, 1, 0))
             ]
 
         )
@@ -520,8 +531,8 @@ fn build_props_layer(
                 y_neg: terrain_sockets.void,
             },
             vec![
-                SpawnableAsset::new(SpriteType::BigTree1BottomRight),
-                SpawnableAsset::new(SpriteType::BigTree1TopRight).with_grid_offset(GridDelta::new(0, 1, 0))
+                SpawnableAsset::new(SpriteType::BigTreeOne(BigTreeOne::BottomRight)),
+                SpawnableAsset::new(SpriteType::BigTreeOne(BigTreeOne::TopRight)).with_grid_offset(GridDelta::new(0, 1, 0))
             ]
 
         )
@@ -538,8 +549,8 @@ fn build_props_layer(
                 y_neg: terrain_sockets.void,
             },
             vec![
-                SpawnableAsset::new(SpriteType::BigTree2BottomLeft),
-                SpawnableAsset::new(SpriteType::BigTree2TopLeft).with_grid_offset(GridDelta::new(0, 1, 0))
+                SpawnableAsset::new(SpriteType::BigTreeTwo(BigTreeTwo::BottomLeft)),
+                SpawnableAsset::new(SpriteType::BigTreeTwo(BigTreeTwo::TopLeft)).with_grid_offset(GridDelta::new(0, 1, 0))
             ]
 
         )
@@ -556,8 +567,8 @@ fn build_props_layer(
                 y_neg: terrain_sockets.void,
             },
             vec![
-                SpawnableAsset::new(SpriteType::BigTree2BottomRight),
-                SpawnableAsset::new(SpriteType::BigTree2TopRight).with_grid_offset(GridDelta::new(0, 1, 0))
+                SpawnableAsset::new(SpriteType::BigTreeTwo(BigTreeTwo::BottomRight)),
+                SpawnableAsset::new(SpriteType::BigTreeTwo(BigTreeTwo::TopRight)).with_grid_offset(GridDelta::new(0, 1, 0))
             ]
 
         )
@@ -565,28 +576,28 @@ fn build_props_layer(
 
     terrain_model_builder.create_model(
         stump_prop.clone(),
-        vec![SpawnableAsset::new(SpriteType::TreeStump1)]
+        vec![SpawnableAsset::new(SpriteType::TreeStump(TreeStump::One))]
     );
 
     terrain_model_builder.create_model(
         stump_prop.clone(),
-        vec![SpawnableAsset::new(SpriteType::TreeStump2)]
+        vec![SpawnableAsset::new(SpriteType::TreeStump(TreeStump::Two))]
     );
 
     terrain_model_builder.create_model(
         stump_prop.clone(),
-        vec![SpawnableAsset::new(SpriteType::TreeStump3)]
+        vec![SpawnableAsset::new(SpriteType::TreeStump(TreeStump::Three))]
     );
 
-    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock1)]);
-    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock2)]);
-    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock3)]);
-    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock4)]);
+    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock(Rock::One))]);
+    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock(Rock::Two))]);
+    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock(Rock::Three))]);
+    terrain_model_builder.create_model(rock_prop.clone(), vec![SpawnableAsset::new(SpriteType::Rock(Rock::Four))]);
 
-    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant1)]);
-    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant2)]);
-    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant3)]);
-    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant4)]);
+    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant(Plant::One))]);
+    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant(Plant::Two))]);
+    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant(Plant::Three))]);
+    terrain_model_builder.create_model(plant_prop.clone(), vec![SpawnableAsset::new(SpriteType::Plant(Plant::Four))]);
 
     socket_collection.add_connections(vec![
         (
