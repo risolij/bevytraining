@@ -2,7 +2,9 @@ use bevy::prelude::*;
 use crate::characters::{
     animation::*,
     config::{ CharacterEntry, CharactersList },
-    movement::Player
+    input::Player,
+    physics::Velocity,
+    facing::Facing
 };
 
 const PLAYER_SCALE: f32 = 0.8;
@@ -92,7 +94,9 @@ pub fn initialize_player_character(
 
         commands.entity(entity).insert((
                 AnimationController::default(),
-                AnimationState::default(),
+                CharacterState::default(),
+                Velocity::default(),
+                Facing::default(),
                 AnimationTimer(Timer::from_seconds(DEFAULT_ANIMATION_FRAME_TIME, TimerMode::Repeating)),
                 character_entry.clone(),
                 sprite

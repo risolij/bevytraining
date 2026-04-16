@@ -1,0 +1,102 @@
+use bevy::prelude::*;
+use super::TileType;
+
+#[derive(Resource)]
+pub struct CollisionMap {
+    tiles: Vec<TileType>,
+    width: i32,
+    height: i32,
+    tile_size: f32,
+    origin_x: f32,
+    origin_y: f32
+}
+
+impl CollisionMap {
+    pub fn new(width: i32, height: i32, tile_size: f32, origin_x: f32, origin_y: f32) -> Self {
+        let size = (width * height) as usize;
+
+        Self {
+            tiles: vec![TileType::Empty; size],
+            width,
+            height,
+            tile_size,
+            origin_x,
+            origin_y
+        }
+    }
+
+    #[inline]
+    fn xy_to_idx(&self, x: i32, y: i32) -> usize {
+        (y * self.width + x) as usize
+    }
+
+    #[inline]
+    pub fn in_bounds(&self, x: i32, y: i32) -> bool {
+        x >= 0 && x < self.width && y >= 0 && y < self.height
+    }
+
+    pub fn world_to_grid(&self, world_pos: Vec2) -> IVec2 {
+        let grid_x = ((world_pos.x - self.origin_x) / self.tile_size).floor() as i32;
+        let grid_y = ((world_pos.y - self.origin_y) / self.tile_size).floor() as i32;
+        IVec2::new(grid_x, grid_y)
+    }
+
+    pub fn grid_to_world(&self, grid_x: i32, grid_y: i32) -> Vec2 {
+        Vec2::new(
+            self.origin_x + (grid_x as f32 + 0.5) * self.tile_size,
+            self.origin_y + (grid_y as f32 + 0.5) * self.tile_size,
+        )
+    }
+
+    pub fn get_tile(&self, x: i32, y: i32) -> Option<TileType> {
+        if self.in_bounds(x, y) {
+            Some(self.tiles[self.xy_to_idx(x, y)])
+        } else {
+            None
+        }
+    }
+
+    pub fn set_tile(&mut self, x: i32, y: i32, tile_type: TileType) {
+        if self.in_bounds(x, y) {
+        }k
+        let idx = self.xy_to_idx(x, y);
+        self.tiles[idx] = tile_type;
+    }
+
+    pub fn is_walkable(&self, x: i32, y: i32) -> bool {
+        self.get_tile(x, y).map_or(false, |t|, t.is_walkable())
+    }
+
+    pub fn is_world_pos_walkable(&self, world_pos: Vec2) -> bool {
+        let grid_pos = self.world_to_grid(world_pos);
+        self.is_walkable(grid_pos.x, grid_pos.y)
+    }
+
+    fn circle_intersects_tile(&self, center: Vec2, radius: f32, gx: i32, gy: i32) -> bool {
+        let tile_min = Vec2::new(
+            self.origin_x + gx as f32 * self.tile_size,
+            self.origin_y + gy as f32 * self.tile_size,
+        );
+
+        let tile_max = tile_min + Vec2::splat(self.tile_size);
+
+        let closest = Vec2::new(
+            center.x.clamp(tile_min.x, tile_max.x),
+            center.y.clamp(tile_min.y, tile_max.y),
+        );
+
+        center.distance_squared(closest) <= radius * radius
+    }
+
+    fn  is_within_bounds(&self, center: Vec2, radius: f32) -> bool {
+        let left = self.origin_x;
+        let right = self.origin_x + self.width as f32 * self.tile_size;
+        let bottom = self.origin_y;
+        let top = self.origin_y + self.height as f32 * self.tile_size;
+
+        center.x - radius >= left
+            && center.x + radius <= right
+            && center.y - radius >= bottom
+            && center.y + radius <= top
+    }
+}
